@@ -1,10 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 
 export default function Loading(){
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Getting react-native Weather</Text>
+            <StatusBar barStyle="dark-content"/>
+            <Text style={styles.text}>사용자 위치 정보를</Text>
+            <Text style={styles.text}>가져오는 중입니다...</Text>
         </View>
     )
 }
