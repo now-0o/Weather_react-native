@@ -18,16 +18,17 @@ export default function App() {
   getWeather = async (latitude, longitude)=>{
     const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`)
     console.log(data);
-    setTemp(data.main.temp);
-    setWeather(data.weather[0].main);
+    await setTemp(data.main.temp);
+    await setWeather(data.weather[0].main);
   }
   getLocation = async ()=>{
     try{
-      await Location.requestBackgroundPermissionsAsync();
+      await Location.requestForegroundPermissionsAsync();
       const {coords : { latitude, longitude }} = await Location.getCurrentPositionAsync();
       await getWeather(latitude, longitude);
       await setIsLoading(false);
     }catch(err){
+      console.log(err);
       Alert.alert("사용자 위치를 찾을 수 없습니다. 위치 정보를 허용해 주세요.")
     }
     
